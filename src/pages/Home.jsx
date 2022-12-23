@@ -3,6 +3,7 @@ import Navbar from "../components/Navbar";
 import fnb from "../assets/fnb.svg";
 import payment from "../assets/payment.svg";
 import transport from "../assets/transport.svg";
+import NoTransaction from "../components/NoTransaction";
 
 const Home = () => {
   const balanceState = useSelector((state) => state.balance);
@@ -28,8 +29,9 @@ const Home = () => {
           </div>
         </div>
         {/* Transaksi */}
-        <div className="px-10">
-          <h1 className="font-bold text-slate-900 text-xl mt-5">
+        {transaction.length === 0? <NoTransaction/> : (<>
+        <div className="px-10 pb-36">
+          <h1 className="font-bold text-slate-900 text-xl my-5">
             Catatan Pengeluaran
           </h1>
           <div className="flex flex-col gap-y-5">
@@ -63,6 +65,8 @@ const Home = () => {
             })}
           </div>
         </div>
+        </>)}
+        
       </section>
     </>
   );

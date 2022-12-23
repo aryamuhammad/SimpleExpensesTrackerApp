@@ -11,19 +11,22 @@ const Navbar = ({home, details}) => {
     const handleClickHome = ()=> {
     navigate('/')
   }
+  const handleClickAdd = ()=> {
+    navigate('/add-transaction')
+  }
   return (
     <nav className=" bg-white shadow-shadowTop fixed bottom-0 w-full py-2 px-5 pb-6">
       <ul className="flex justify-center gap-20">
         <li className="flex flex-col items-center justify-center">
-          <HomeIcon  className={`${home ? "text-blue-800": "text-slate-800"}`} onClick={handleClickHome}/>
+          <HomeIcon  className={`${home ? "text-blue-800 cursor-pointer ": "text-slate-800 cursor-pointer"}`} onClick={handleClickHome}/>
           <Link to={"/"}>Home</Link>
         </li>
         <li className="flex flex-col items-center justify-center">
-            <AddIcon sx={{fontSize: 68}} className='text-slate-50 rounded-full absolute bg-teal-500 -top-10 mb-2 hover:bg-teal-700 hover:transition-all hover:duration-300 hover:ease-in'/>
-          <Link className='mt-6'>Catat</Link>
+            <AddIcon sx={{fontSize: 68}} className='text-slate-50 cursor-pointer rounded-full absolute bg-teal-500 -top-10 mb-2 hover:bg-teal-700 hover:transition-all hover:duration-300 hover:ease-in' onClick={handleClickAdd}/>
+          <Link to={'/add-transaction'} className='mt-6'>Catat</Link>
         </li>
         <li className="flex flex-col items-center justify-center">
-            <NotesIcon className={`${details ? "text-blue-800": "text-slate-800"}`} onClick={handleClickDetails}  />
+            <NotesIcon className={`${details ? "text-blue-800 cursor-pointer": " cursor-pointer text-slate-800"}`} onClick={handleClickDetails}  />
           <Link to={"/details"}>Details</Link>
         </li>
       </ul>

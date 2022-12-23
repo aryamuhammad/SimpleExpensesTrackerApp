@@ -1,5 +1,5 @@
 const initialState = {
-  balance: 1000000,
+  balance: 0,
   isLoading: false,
   err: null,
 };
