@@ -8,7 +8,7 @@ import NoTransaction from "../components/NoTransaction";
 const Home = () => {
   const balanceState = useSelector((state) => state.balance);
   const currentBalance = balanceState.balance.toLocaleString("id");
-  const transaction = useSelector((state) => state.transaction.data);
+  const transaction = useSelector((state) => state.transaction);
   return (
     <>
       <Navbar home={true} details={false} />
@@ -36,25 +36,37 @@ const Home = () => {
           </h1>
           <div className="flex flex-col gap-y-5">
             {transaction.map((item) => {
+              localStorage.setItem("data", item)
                 const amount = item.amount.toLocaleString("id")
                 let icon = ""
+                let category=""
                  function getIcon() {
-                    if (item.category == "Pembayaran") {
+                    if (item.category == "payment") {
                         icon = payment
-                    }else if (item.category == "Makanan dan Minuman") {
+                    }else if (item.category == "fnb") {
                         icon = fnb
-                    }else if (item.category == "Transportasi") {
+                    }else if (item.category == "transport") {
                         icon = transport
                     }
                 }
+                function getCategory(){
+                   if (item.category == "payment") {
+                        category = "Pembayaran"
+                    }else if (item.category == "fnb") {
+                        category = "Makanan dan Minuman"
+                    }else if (item.category == "transport") {
+                        category = "Transportasi"
+                    }
+                }
                 getIcon()
+                getCategory()
               return (
                 <div key={item.id} className="bg-white shadow-lg flex justify-between  items-center gap-x-3 rounded-lg py-3 px-4">
                   <img src={icon} alt="" className="w-1/4 p-0 m-0 flex-none" />
                   <div className="flex-auto">
                     <h1 className="font-bold">{item.name}</h1>
                     <p className="text-xs font-extralight italic">
-                        {item.category}
+                        {category}
                     </p>
                   </div>
                   <div className="text-rose-700 font-bold flex-auto">

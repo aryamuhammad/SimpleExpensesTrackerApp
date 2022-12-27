@@ -7,7 +7,7 @@ import payment from "../assets/payment.svg";
 import transport from "../assets/transport.svg";
 import NoTransaction from "../components/NoTransaction";
 const DetailsTransaction = () => {
-  const transaction = useSelector((state)=> state.transaction.data)
+  const transaction = useSelector((state)=> state.transaction)
   console.log(transaction)
     const navigate = useNavigate()
     const handleClick = ()=> {
@@ -31,25 +31,36 @@ const DetailsTransaction = () => {
         </div>
         <div className="flex flex-col gap-y-5 px-10 mt-4">
           {transaction.length === 0? <NoTransaction/> :transaction.map((item) => {
-                const amount = item.amount.toLocaleString("id")
+            const amount = parseInt(item.amount).toLocaleString("id")
                 let icon = ""
+                let category=""
                  function getIcon() {
-                    if (item.category == "Pembayaran") {
+                    if (item.category == "payment") {
                         icon = payment
-                    }else if (item.category == "Makanan dan Minuman") {
+                    }else if (item.category == "fnb") {
                         icon = fnb
-                    }else if (item.category == "Transportasi") {
+                    }else if (item.category == "transport") {
                         icon = transport
                     }
                 }
+                function getCategory(){
+                   if (item.category == "payment") {
+                        category = "Pembayaran"
+                    }else if (item.category == "fnb") {
+                        category = "Makanan dan Minuman"
+                    }else if (item.category == "transport") {
+                        category = "Transportasi"
+                    }
+                }
                 getIcon()
+                getCategory()
               return (
                 <div key={item.id} className="bg-white shadow-lg flex justify-between  items-center gap-x-3 rounded-lg py-3 px-4">
                   <img src={icon} alt="" className="w-1/4 p-0 m-0 flex-none" />
                   <div className="flex-auto">
                     <h1 className="font-bold">{item.name}</h1>
                     <p className="text-xs font-extralight italic">
-                        {item.category}
+                        {category}
                     </p>
                   </div>
                   <div className="text-rose-700 font-bold flex-auto">

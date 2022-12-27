@@ -1,12 +1,18 @@
-import { useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import FalseButton from "../components/FalseButton";
 import Navbar from "../components/Navbar";
 import TrueButton from "../components/TrueButton";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { addTransaction } from "../redux/action/action";
 const AddTransactionForm = () => {
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+  const transaction = useSelector((state)=> state.transaction)
+console.log(transaction.length)
   const [data, setData] = useState({
+    id:transaction.length + 1,
     name: "",
     amount: "",
     category: "",
@@ -39,7 +45,9 @@ const AddTransactionForm = () => {
         text: "Transaksi anda berhasil dicatat!",
         confirmButtonColor: "#009688",
       });
-      navigate("/transaction")
+            navigate("/transaction")
+      dispatch(addTransaction(data))
+
     }
   };
   const handleChange = (e) => {
