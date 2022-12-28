@@ -7,7 +7,7 @@ import NoTransaction from "../components/NoTransaction";
 
 const Home = () => {
   const balanceState = useSelector((state) => state.balance);
-  const currentBalance = balanceState.balance.toLocaleString("id");
+  const currentBalance = parseInt(balanceState).toLocaleString("id");
   const transaction = useSelector((state) => state.transaction);
   return (
     <>
@@ -36,8 +36,7 @@ const Home = () => {
           </h1>
           <div className="flex flex-col gap-y-5">
             {transaction.map((item) => {
-              localStorage.setItem("data", item)
-                const amount = item.amount.toLocaleString("id")
+                const amount = parseInt(item.amount).toLocaleString("id")
                 let icon = ""
                 let category=""
                  function getIcon() {

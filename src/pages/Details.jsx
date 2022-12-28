@@ -5,10 +5,13 @@ import { useSelector } from "react-redux";
 
 const Details = () => {
     const navigate = useNavigate()
-    const balance = useSelector((state)=> state.balance.balance)
-    const currentBalance = balance.toLocaleString("id")
+    const balance = useSelector((state)=> state.balance)
+    const currentBalance = parseInt(balance).toLocaleString("id")
     const handleClick = ()=> {
         navigate("/transaction")
+    }
+    const handleClickEditButton=()=> {
+      navigate('/edit-balance')
     }
   return (
     <>
@@ -32,7 +35,7 @@ const Details = () => {
                     <h1 className="text-xl font-bold">Cash</h1>
                     <h1 className="text-lg font-medium">Rp{currentBalance}</h1>
                 </div>
-                <div className="w-1/4 flex justify-center items-center rounded-full hover:bg-teal-600 ">
+                <div className="w-1/4 flex justify-center items-center rounded-full hover:bg-teal-600" onClick={handleClickEditButton}>
                     <EditIcon sx={{fontSize: 32}}/>
                 </div>
             </div>

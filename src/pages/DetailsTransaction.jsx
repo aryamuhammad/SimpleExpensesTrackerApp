@@ -8,7 +8,6 @@ import transport from "../assets/transport.svg";
 import NoTransaction from "../components/NoTransaction";
 const DetailsTransaction = () => {
   const transaction = useSelector((state)=> state.transaction)
-  console.log(transaction)
     const navigate = useNavigate()
     const handleClick = ()=> {
         navigate('/details')

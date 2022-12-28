@@ -1,4 +1,4 @@
-import { useState, useSyncExternalStore } from "react";
+import { useState} from "react";
 import FalseButton from "../components/FalseButton";
 import Navbar from "../components/Navbar";
 import TrueButton from "../components/TrueButton";
@@ -10,7 +10,6 @@ const AddTransactionForm = () => {
   const navigate = useNavigate()
   const dispatch = useDispatch()
   const transaction = useSelector((state)=> state.transaction)
-console.log(transaction.length)
   const [data, setData] = useState({
     id:transaction.length + 1,
     name: "",
@@ -47,7 +46,6 @@ console.log(transaction.length)
       });
             navigate("/transaction")
       dispatch(addTransaction(data))
-
     }
   };
   const handleChange = (e) => {
@@ -80,6 +78,7 @@ console.log(transaction.length)
             <label className="font-semibold">Jumlah Pengeluaran</label>
             <input
               type="text"
+              pattern="\d*"
               inputMode="numeric"
               className="px-2 py-3 outline-teal-500 rounded-lg border-2"
               placeholder="Contoh: 15000"
