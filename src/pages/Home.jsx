@@ -7,8 +7,19 @@ import NoTransaction from "../components/NoTransaction";
 
 const Home = () => {
   const balanceState = useSelector((state) => state.balance);
+  let pengeluaran = 0;
   const currentBalance = parseInt(balanceState).toLocaleString("id");
   const transaction = useSelector((state) => state.transaction);
+  let i;
+  if (localStorage.getItem("transaksi")) {
+    for (i = 0; i < transaction.length; i++) {
+      pengeluaran += parseInt(transaction[i].amount);
+    }
+  } else {
+    pengeluaran = parseInt(pengeluaran);
+  }
+
+  let cashOut = pengeluaran.toLocaleString("id");
   return (
     <>
       <Navbar home={true} details={false} />
@@ -24,60 +35,70 @@ const Home = () => {
             </div>
             <div className="flex justify-between ">
               <h1 className="text-slate-900 font-bold">Pengeluaran</h1>
-              <p className="text-slate-900 font-bold">Rp2.000.000</p>
+              <p className="text-slate-900 font-bold">Rp{cashOut}</p>
             </div>
           </div>
         </div>
         {/* Transaksi */}
-        {transaction.length === 0? <NoTransaction/> : (<>
-        <div className="px-10 pb-36">
-          <h1 className="font-bold text-slate-900 text-xl my-5">
-            Catatan Pengeluaran
-          </h1>
-          <div className="flex flex-col gap-y-5">
-            {transaction.map((item) => {
-                const amount = parseInt(item.amount).toLocaleString("id")
-                let icon = ""
-                let category=""
-                 function getIcon() {
+        {transaction.length === 0 ? (
+          <NoTransaction />
+        ) : (
+          <>
+            <div className="px-10 pb-36">
+              <h1 className="font-bold text-slate-900 text-xl my-5">
+                Catatan Pengeluaran
+              </h1>
+              <div className="flex flex-col gap-y-5">
+                {transaction.map((item) => {
+                  const amount = parseInt(item.amount).toLocaleString("id");
+                  let icon = "";
+                  let category = "";
+                  function getIcon() {
                     if (item.category == "payment") {
-                        icon = payment
-                    }else if (item.category == "fnb") {
-                        icon = fnb
-                    }else if (item.category == "transport") {
-                        icon = transport
+                      icon = payment;
+                    } else if (item.category == "fnb") {
+                      icon = fnb;
+                    } else if (item.category == "transport") {
+                      icon = transport;
                     }
-                }
-                function getCategory(){
-                   if (item.category == "payment") {
-                        category = "Pembayaran"
-                    }else if (item.category == "fnb") {
-                        category = "Makanan dan Minuman"
-                    }else if (item.category == "transport") {
-                        category = "Transportasi"
+                  }
+                  function getCategory() {
+                    if (item.category == "payment") {
+                      category = "Pembayaran";
+                    } else if (item.category == "fnb") {
+                      category = "Makanan dan Minuman";
+                    } else if (item.category == "transport") {
+                      category = "Transportasi";
                     }
-                }
-                getIcon()
-                getCategory()
-              return (
-                <div key={item.id} className="bg-white shadow-lg flex justify-between  items-center gap-x-3 rounded-lg py-3 px-4">
-                  <img src={icon} alt="" className="w-1/4 p-0 m-0 flex-none" />
-                  <div className="flex-auto">
-                    <h1 className="font-bold">{item.name}</h1>
-                    <p className="text-xs font-extralight italic">
-                        {category}
-                    </p>
-                  </div>
-                  <div className="text-rose-700 font-bold flex-auto">
-                    <h1>Rp{amount}</h1>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-        </>)}
-        
+                  }
+                  getIcon();
+                  getCategory();
+                  return (
+                    <div
+                      key={item.id}
+                      className="bg-white shadow-lg flex justify-between  items-center gap-x-3 rounded-lg py-3 px-4"
+                    >
+                      <img
+                        src={icon}
+                        alt=""
+                        className="w-1/4 p-0 m-0 flex-none"
+                      />
+                      <div className="flex-auto">
+                        <h1 className="font-bold">{item.name}</h1>
+                        <p className="text-xs font-extralight italic">
+                          {category}
+                        </p>
+                      </div>
+                      <div className="text-rose-700 font-bold flex-auto">
+                        <h1>Rp{amount}</h1>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        )}
       </section>
     </>
   );

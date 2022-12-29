@@ -13,7 +13,6 @@ function App() {
   const balance  = useSelector((state)=> state.balance)
   localStorage.setItem("balance", JSON.stringify(balance))
   localStorage.setItem("transaksi", JSON.stringify(transaction))
-console.log(transaction);
   return (
     <div className="App">
       <Routes>
