@@ -11,9 +11,6 @@ const EditBalanceForm = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [saldo, setSaldo] = useState("");
-  const handleCancel = ()=> {
-    navigate('/details')
-  }
   const handleSubmit = (e) => {
     e.preventDefault();
     if (saldo == "") {
@@ -42,15 +39,12 @@ const EditBalanceForm = () => {
         <div className="px-10 py-10 shadow-md">
           <h1 className="font-bold text-center text-xl">Edit Pemasukan</h1>
         </div>
-        <form onSubmit={handleSubmit} className="mt-16">
-          <div className="bg-white shadow-2xl mx-10 rounded-lg py-5 px-3">
+        <div className="bg-white shadow-2xl mx-10 rounded-lg py-5 px-3">
+          <form onSubmit={handleSubmit} className="mt-16">
             <h1 className="font-bold text-center my-3 text-lg">
               Edit Pemasukan Anda
             </h1>
             <div className="flex flex-col gap-y-2 py-2">
-              {/* <label className="font-semibold">
-                Masukkan Jumlah Saldo
-              </label> */}
               <div className="flex justify-start px-0 gap-x-2">
                 <button
                   disabled
@@ -72,11 +66,11 @@ const EditBalanceForm = () => {
             <div className="flex flex-col mx-10 gap-y-2 py-2 mt-4">
               <TrueButton text="Simpan" />
             </div>
-            <div className="flex flex-col mx-10 gap-y-2 py-2">
-              <FalseButton text="Batal" onClick={handleCancel} />
-            </div>
+          </form>
+          <div className="flex flex-col mx-10 gap-y-2 py-2">
+            <FalseButton text="Batal" to="/details" />
           </div>
-        </form>
+        </div>
       </section>
     </>
   );

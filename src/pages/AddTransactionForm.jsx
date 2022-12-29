@@ -1,4 +1,4 @@
-import { useState} from "react";
+import { useState } from "react";
 import FalseButton from "../components/FalseButton";
 import Navbar from "../components/Navbar";
 import TrueButton from "../components/TrueButton";
@@ -7,11 +7,11 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addTransaction } from "../redux/action/action";
 const AddTransactionForm = () => {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
-  const transaction = useSelector((state)=> state.transaction)
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const transaction = useSelector((state) => state.transaction);
   const [data, setData] = useState({
-    id:transaction.length + 1,
+    id: transaction.length + 1,
     name: "",
     amount: "",
     category: "",
@@ -44,8 +44,8 @@ const AddTransactionForm = () => {
         text: "Transaksi anda berhasil dicatat!",
         confirmButtonColor: "#009688",
       });
-            navigate("/transaction")
-      dispatch(addTransaction(data))
+      navigate("/transaction");
+      dispatch(addTransaction(data));
     }
   };
   const handleChange = (e) => {
@@ -114,10 +114,10 @@ const AddTransactionForm = () => {
           <div className="flex flex-col mx-10 gap-y-2 py-2">
             <TrueButton text="Tambah" />
           </div>
-          <div className="flex flex-col mx-10 gap-y-2 py-2">
-            <FalseButton text="Batal" />
-          </div>
         </form>
+        <div className="flex flex-col mx-10 gap-y-2 py-2">
+          <FalseButton text="Batal" to="/" />
+        </div>
       </section>
     </>
   );
