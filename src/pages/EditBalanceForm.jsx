@@ -28,7 +28,7 @@ const EditBalanceForm = () => {
       Swal.fire({
         icon: "success",
         title: "Berhasil",
-        text: "Saldo Anda Berhasil Diedit!",
+        text: "Pemasukan Anda Berhasil Diedit!",
         confirmButtonColor: "#009688",
       });
       navigate("/details");
@@ -40,12 +40,12 @@ const EditBalanceForm = () => {
       <Navbar home={false} details={false} />
       <section className="pb-40">
         <div className="px-10 py-10 shadow-md">
-          <h1 className="font-bold text-center text-xl">Edit Saldo</h1>
+          <h1 className="font-bold text-center text-xl">Edit Pemasukan</h1>
         </div>
         <form onSubmit={handleSubmit} className="mt-16">
           <div className="bg-white shadow-2xl mx-10 rounded-lg py-5 px-3">
             <h1 className="font-bold text-center my-3 text-lg">
-              Edit Saldo Anda
+              Edit Pemasukan Anda
             </h1>
             <div className="flex flex-col gap-y-2 py-2">
               {/* <label className="font-semibold">

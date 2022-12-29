@@ -30,7 +30,7 @@ const Home = () => {
           </h1>
           <div className="bg-white flex flex-col gap-y-5 px-5 py-5 rounded-lg drop-shadow-lg">
             <div className="flex justify-between">
-              <h1 className="text-slate-900 font-bold">Saldo</h1>
+              <h1 className="text-slate-900 font-bold">Pemasukan</h1>
               <p className="text-slate-900 font-bold">Rp{currentBalance}</p>
             </div>
             <div className="flex justify-between ">

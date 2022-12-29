@@ -21,7 +21,7 @@ const Details = () => {
           <h1 className=" font-bold text-xl text-center my-1">Details</h1>
           <div className=" flex justify-between py-1 px-2 gap-x-6">
             <div className="w-1/2 text-center border-b-2 border-teal-500 py-1 cursor-pointer">
-              <h1 className="font-bold text-xl ">Saldo</h1>
+              <h1 className="font-bold text-xl ">Pemasukan</h1>
             </div>
             <div className="w-1/2 text-center py-1 cursor-pointer" onClick={handleClick}>
               <h1 className="font-bold text-xl">Pengeluaran</h1>
